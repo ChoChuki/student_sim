@@ -6,7 +6,7 @@ with open("readme.md", "r") as fh:
 
 vars2find = ["__author__", "__version__", "__url__"]
 vars2readme = {}
-with open("./nano_graphrag/__init__.py") as f:
+with open("./src/nano_graphrag/__init__.py") as f:
     for line in f.readlines():
         for v in vars2find:
             if line.startswith(v):

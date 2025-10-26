@@ -11,5 +11,6 @@ STR_TO_MODEL_NAME_MAP = {
     "4o": "gpt-4o",
     "3.5": "gpt-3.5-turbo",
     "claude": "claude-3-5-sonnet-20240620",
-    "llama": "meta-llama/Llama-3.3-70B-Instruct-Turbo"
+    "llama": "llama3.1:8b"
+    # "llama": "meta-llama/Llama-3.3-70B-Instruct-Turbo"
 }

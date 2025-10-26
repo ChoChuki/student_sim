@@ -51,7 +51,9 @@ def main(student_list, model):
     print("Score2: ", results[:, 2].mean())
 
 if __name__ == "__main__":
-    for model in ["llama", "claude", "3.5", "4o"]:
+    for model in ["llama"]:
+    # for model in ["llama", "claude", "3.5", "4o"]:
         main(student_list=student_list_2, model=model)
-    for model in ["llama", "claude", "3.5", "4o"]:
+    for model in ["llama"]:
+    # for model in ["llama", "claude", "3.5", "4o"]:
         main(student_list=student_list_3, model=model)

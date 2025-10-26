@@ -46,7 +46,7 @@ def eval_behavior_prediction(this_test, output, eval_file, subject):
 
     request = {
         "id": this_test['problem_id'],
-        "model": "o1-mini",
+        "model": "llama3.1:8b", #"o1-mini",
         "messages": [{"role": "user", "content": content}],
         "output_file": eval_file,
     }
@@ -159,7 +159,7 @@ def eval_solution_simulation(this_test, answer, description, eval_file, subject)
 
     request = {
         "id": this_test['problem_id'],
-        "model": "o1-mini",
+        "model": "llama3.1:8b", #"o1-mini",
         "messages": [{"role": "user", "content": content}],
         "output_file": eval_file,
     }

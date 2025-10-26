@@ -14,11 +14,14 @@ def generate(data):
                     return i["output"]
     
     if 'llama' in data['model']:
-        client = OpenAI(api_key=os.getenv('LLAMA_API_KEY'), base_url=os.getenv('LLAMA_BASE_URL'), timeout=60)
+        client = OpenAI(api_key=os.getenv('LLAMA_API_KEY'), base_url=os.getenv('LLAMA_BASE_URL'), timeout=600)
+        # client = OpenAI(api_key=os.getenv('LLAMA_API_KEY'), base_url=os.getenv('LLAMA_BASE_URL'), timeout=60)
     elif 'claude' in data['model']:
-        client = OpenAI(api_key=os.getenv('CLAUDE_API_KEY'), base_url=os.getenv('CLAUDE_BASE_URL'), timeout=60)
+        client = OpenAI(api_key=os.getenv('CLAUDE_API_KEY'), base_url=os.getenv('CLAUDE_BASE_URL'), timeout=600)
+        # client = OpenAI(api_key=os.getenv('CLAUDE_API_KEY'), base_url=os.getenv('CLAUDE_BASE_URL'), timeout=60)
     else:
-        client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'), timeout=60)
+        client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'), timeout=600)
+        # client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'), timeout=60)
 
     if "generation_config" in data:
         if 'claude' in data['model']:
@@ -59,23 +62,23 @@ def generate(data):
 def read_json(file_path):
     if not os.path.isfile(file_path):
         return None
-    with open(file_path) as f:
+    with open(file_path, encoding="utf-8") as f:
         return json.load(f)
 
 def read_jsonl(file_path):
     if not os.path.isfile(file_path):
         return None
-    with open(file_path) as f:
+    with open(file_path, encoding="utf-8") as f:
         result = [json.loads(line) for line in f.readlines()]
     result = sorted(result, key=lambda x: x['id'])
     return result
 
 def write_json(file_path, data):
-    with open(file_path, 'w') as f:
+    with open(file_path, 'w', encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
 
 def write_jsonl(file_path, single_data):
-    with open(file_path, 'a') as f:
+    with open(file_path, 'a', encoding="utf-8") as f:
         f.write(json.dumps(single_data, ensure_ascii=False)+'\n')
 
 

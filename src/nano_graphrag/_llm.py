@@ -21,11 +21,14 @@ async def openai_complete_if_cache(
     model, prompt, system_prompt=None, history_messages=[], **kwargs
 ) -> str:
     if 'llama' in model:
-        openai_async_client = AsyncOpenAI(api_key=os.getenv('LLAMA_API_KEY'), base_url=os.getenv('LLAMA_BASE_URL'), timeout=60)
+        openai_async_client = AsyncOpenAI(api_key=os.getenv('LLAMA_API_KEY'), base_url=os.getenv('LLAMA_BASE_URL'), timeout=600)
+        # openai_async_client = AsyncOpenAI(api_key=os.getenv('LLAMA_API_KEY'), base_url=os.getenv('LLAMA_BASE_URL'), timeout=60)
     elif 'claude' in model:
-        openai_async_client = AsyncOpenAI(api_key=os.getenv('CLAUDE_API_KEY'), base_url=os.getenv('CLAUDE_BASE_URL'), timeout=60)
+        openai_async_client = AsyncOpenAI(api_key=os.getenv('CLAUDE_API_KEY'), base_url=os.getenv('CLAUDE_BASE_URL'), timeout=600)
+        # openai_async_client = AsyncOpenAI(api_key=os.getenv('CLAUDE_API_KEY'), base_url=os.getenv('CLAUDE_BASE_URL'), timeout=60)
     else:
-        openai_async_client = AsyncOpenAI(api_key=os.getenv('OPENAI_API_KEY'), timeout=60)
+        openai_async_client = AsyncOpenAI(api_key=os.getenv('OPENAI_API_KEY'), timeout=600)
+        # openai_async_client = AsyncOpenAI(api_key=os.getenv('OPENAI_API_KEY'), timeout=60)
     hashing_kv: BaseKVStorage = kwargs.pop("hashing_kv", None)
     messages = []
     if system_prompt:
@@ -75,7 +78,8 @@ async def llama_complete(
     prompt, system_prompt=None, history_messages=[], **kwargs
 ) -> str:
     return await openai_complete_if_cache(
-        "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+        "llama3.1:8b",
+        # "meta-llama/Llama-3.3-70B-Instruct-Turbo",
         prompt,
         system_prompt=system_prompt,
         history_messages=history_messages,
